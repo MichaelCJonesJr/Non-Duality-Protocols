@@ -1,0 +1,10 @@
+{
+    "accepted_messages": 0,
+    "leadership"       : 0,
+    "background_hits"  : 0,
+    "active"           : true,
+    "known_leadership" : 0,
+    "neighbor_nodes"   : [],
+    "latency_matrix"   : [],
+    "seen_messages"    : []
+}
