@@ -24,15 +24,13 @@ cleanup() {
 }
 
 cleanup
-echo "[*] Phase 1: Raft ($NODES Nodes) | Freq: ${ATTACK_FREQ}s | Max: ${MAX_TIME}s"
+echo "Raft ($NODES Nodes) | Freq: ${ATTACK_FREQ}s | Max: ${MAX_TIME}s"
 
 # Generate Port List dynamically based on N
 ALL_PORTS=()
 for ((p=1; p<=NODES; p++)); do
     ALL_PORTS+=($((6000 + p)))
 done
-
-echo "[*] Booting Raft Swarm (Staggered)..."
 
 # Start Raft Nodes with N-1 partner arguments
 for MY_PORT in "${ALL_PORTS[@]}"; do
@@ -57,8 +55,7 @@ python3 raft_monitor.py "$NODES" > /dev/null 2>&1 &
 MON_PID=$!
 disown
 
-echo "[*] Waiting for Raft to elect initial leader..."
-# SMART BLOCK: Wait until the monitor successfully writes the first row of data
+#Wait until the monitor successfully writes the first row of data
 while [ ! -f raft_sniper_metrics.csv ] || [ $(wc -l < raft_sniper_metrics.csv 2>/dev/null || echo 0) -lt 2 ]; do
     sleep 0.5
 done
@@ -75,7 +72,7 @@ kill $MON_PID 2>/dev/null
 mv raft_sniper_metrics.csv resulteddata/raft_results.csv
 
 cleanup
-echo "[*] Phase 2: Research Protocol ($NODES Nodes) | Freq: ${ATTACK_FREQ}s | Max: ${MAX_TIME}s"
+echo "FlexMode Protocol ($NODES Nodes) | Freq: ${ATTACK_FREQ}s | Max: ${MAX_TIME}s"
 
 ./start_nodes.sh "$NODES"
 sleep 5

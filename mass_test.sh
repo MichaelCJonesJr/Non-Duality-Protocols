@@ -31,22 +31,16 @@ for N in 10 20 40 80; do
             # Moving logs from the root to the new log subfolder
             mv *.log "$LOG_DIR/" 2>/dev/null
             
-            # Moving the plot from the root (where it is generated) to resulteddata
+            # Moving the plot to resulteddata
             mv final_comparison_results.png "resulteddata/PLOT_${ID}.png" 2>/dev/null
             
             # Renaming CSVs already inside resulteddata to their permanent ID
             mv resulteddata/raft_results.csv "resulteddata/RAFT_${ID}.csv" 2>/dev/null
             mv resulteddata/research_results.csv "resulteddata/FLEX_${ID}.csv" 2>/dev/null
 
-            echo "[+] Archive Complete for $ID"
-
-            # 4. Standard Cleanup
             ./cleanup.sh
             ./stop_nodes.sh
-            
-            # Brief pause for the network stack
-            sleep 2
-            
+
         done
     done
 done

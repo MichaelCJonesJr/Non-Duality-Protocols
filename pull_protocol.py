@@ -127,6 +127,7 @@ def pull_protocol(config_json, node_state, state_lock, this_port, number_of_node
 
     # returns a list of valid neighbors based on leadership formulas, config fanout, and dead nodes.
 def select_neighbor(config_json, node_state, state_lock, this_port, fanout):
+    node_sample = []
     state_lock.acquire()
     neighbors = node_state["neighbor_nodes"]
     if(abs(node_state["leadership"]) * .3 + .5 > random.random()):
