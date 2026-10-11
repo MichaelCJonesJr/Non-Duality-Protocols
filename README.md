@@ -2,7 +2,7 @@
 Experimental Gear for Evaluation of Swarm Systems
 
 ## Comments
-Since this is a schientific tool with a lot of intricacies intended to be widely disseminated and replicated, it uses the *comment-everything* style. Each time you change something, you must also update all comments that may be affected by the change.
+Since this is a scientific tool with a lot of intricacies intended to be widely disseminated and replicated, it uses the *comment-everything* style. Each time you change something, you must also update all comments that may be affected by the change.
 
 ## Docstrings
 This project uses *Google style* docstrings. Although this is a scientific project, we don't use NumPy style because it is too bulky.
